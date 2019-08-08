@@ -41,7 +41,7 @@ public class LangUtils extends JavaPlugin {
         config.addDefault("FallbackLanguage", "en_us");
         List<String> defaultLang = new ArrayList<>();
         defaultLang.add("en_us");
-        defaultLang.add("zh_cn");
+        defaultLang.add("zh_tw");
         config.addDefault("LoadLanguage", defaultLang);
         config.options().copyDefaults(true);
         saveConfig();
