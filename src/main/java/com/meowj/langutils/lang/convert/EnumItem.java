@@ -12,6 +12,7 @@ package com.meowj.langutils.lang.convert;
 
 
 import com.meowj.langutils.lang.LanguageHelper;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -109,7 +110,6 @@ public enum EnumItem {
     JUNGLE_LEAVES(Material.JUNGLE_LEAVES, "block.minecraft.jungle_leaves"),
     ACACIA_LEAVES(Material.ACACIA_LEAVES, "block.minecraft.acacia_leaves"),
     DARK_OAK_LEAVES(Material.DARK_OAK_LEAVES, "block.minecraft.dark_oak_leaves"),
-    DEAD_BUSH(Material.DEAD_BUSH, "block.minecraft.dead_bush"),
     GRASS(Material.GRASS, "block.minecraft.grass"),
     FERN(Material.FERN, "block.minecraft.fern"),
     SPONGE(Material.SPONGE, "block.minecraft.sponge"),
@@ -226,8 +226,6 @@ public enum EnumItem {
     WHEAT_CROPS(Material.WHEAT, "block.minecraft.wheat"),
     FARMLAND(Material.FARMLAND, "block.minecraft.farmland"),
     FURNACE(Material.FURNACE, "block.minecraft.furnace"),
-    //    SIGN(Material.SIGN, "block.minecraft.sign"),
-//    WALL_SIGN(Material.WALL_SIGN, "block.minecraft.wall_sign"),
     LADDER(Material.LADDER, "block.minecraft.ladder"),
     RAIL(Material.RAIL, "block.minecraft.rail"),
     POWERED_RAIL(Material.POWERED_RAIL, "block.minecraft.powered_rail"),
@@ -686,7 +684,7 @@ public enum EnumItem {
     ITEM_FRAME(Material.ITEM_FRAME, "item.minecraft.item_frame"),
     GOLDEN_APPLE(Material.GOLDEN_APPLE, "item.minecraft.golden_apple"),
     ENCHANTED_GOLDEN_APPLE(Material.ENCHANTED_GOLDEN_APPLE, "item.minecraft.enchanted_golden_apple"),
-    //    SIGN_ITEM(Material.SIGN, "item.minecraft.sign"),
+    SIGN_ITEM(Material.LEGACY_SIGN, "item.minecraft.sign"),
     BUCKET(Material.BUCKET, "item.minecraft.bucket"),
     WATER_BUCKET(Material.WATER_BUCKET, "item.minecraft.water_bucket"),
     LAVA_BUCKET(Material.LAVA_BUCKET, "item.minecraft.lava_bucket"),
@@ -741,8 +739,6 @@ public enum EnumItem {
     MUSIC_DISC_WAIT(Material.MUSIC_DISC_WAIT, "item.minecraft.music_disc_wait"),
     BONE(Material.BONE, "item.minecraft.bone"),
     INK_SAC(Material.INK_SAC, "item.minecraft.ink_sac"),
-    //    ROSE_RED(Material.ROSE_RED, "item.minecraft.rose_red"),
-//    CACTUS_GREEN(Material.CACTUS_GREEN, "item.minecraft.cactus_green"),
     COCOA_BEANS(Material.COCOA_BEANS, "item.minecraft.cocoa_beans"),
     LAPIS_LAZULI(Material.LAPIS_LAZULI, "item.minecraft.lapis_lazuli"),
     PURPLE_DYE(Material.PURPLE_DYE, "item.minecraft.purple_dye"),
@@ -751,7 +747,6 @@ public enum EnumItem {
     GRAY_DYE(Material.GRAY_DYE, "item.minecraft.gray_dye"),
     PINK_DYE(Material.PINK_DYE, "item.minecraft.pink_dye"),
     LIME_DYE(Material.LIME_DYE, "item.minecraft.lime_dye"),
-    //    DANDELION_YELLOW(Material.DANDELION_YELLOW, "item.minecraft.dandelion_yellow"),
     LIGHT_BLUE_DYE(Material.LIGHT_BLUE_DYE, "item.minecraft.light_blue_dye"),
     MAGENTA_DYE(Material.MAGENTA_DYE, "item.minecraft.magenta_dye"),
     ORANGE_DYE(Material.ORANGE_DYE, "item.minecraft.orange_dye"),
@@ -917,7 +912,7 @@ public enum EnumItem {
     CUT_SANDSTONE_SLAB(Material.CUT_SANDSTONE_SLAB, "block.minecraft.cut_sandstone_slab"),
     DARK_OAK_SIGN(Material.DARK_OAK_SIGN, "block.minecraft.dark_oak_sign"),
     DARK_OAK_WALL_SIGN(Material.DARK_OAK_WALL_SIGN, "block.minecraft.dark_oak_wall_sign"),
-    //    DEAD_BUSH(Material.dead_bush, "block.minecraft.dead_bush"),
+    DEAD_BUSH(Material.DEAD_BUSH, "block.minecraft.dead_bush"),
     DIORITE_SLAB(Material.DIORITE_SLAB, "block.minecraft.diorite_slab"),
     DIORITE_STAIRS(Material.DIORITE_STAIRS, "block.minecraft.diorite_stairs"),
     DIORITE_WALL(Material.DIORITE_WALL, "block.minecraft.diorite_wall"),
@@ -953,7 +948,6 @@ public enum EnumItem {
     POLISHED_GRANITE_STAIRS(Material.POLISHED_GRANITE_STAIRS, "block.minecraft.polished_granite_stairs"),
     POTTED_BAMBOO(Material.POTTED_BAMBOO, "block.minecraft.potted_bamboo"),
     POTTED_CORNFLOWER(Material.POTTED_CORNFLOWER, "block.minecraft.potted_cornflower"),
-    // POTTED_DEAD_BUSH(Material.potted_dead_bush, "block.minecraft.potted_dead_bush"),
     POTTED_LILY_OF_THE_VALLEY(Material.POTTED_LILY_OF_THE_VALLEY, "block.minecraft.potted_lily_of_the_valley"),
     POTTED_WITHER_ROSE(Material.POTTED_WITHER_ROSE, "block.minecraft.potted_wither_rose"),
     PRISMARINE_WALL(Material.PRISMARINE_WALL, "block.minecraft.prismarine_wall"),
@@ -997,7 +991,6 @@ public enum EnumItem {
     PILLAGER_SPAWN_EGG(Material.PILLAGER_SPAWN_EGG, "item.minecraft.pillager_spawn_egg"),
     RAVAGER_SPAWN_EGG(Material.RAVAGER_SPAWN_EGG, "item.minecraft.ravager_spawn_egg"),
     RED_DYE(Material.RED_DYE, "item.minecraft.red_dye"),
-    //    REDSTONE(Material.redstone, "item.minecraft.redstone"),
     SKULL_BANNER_PATTERN(Material.SKULL_BANNER_PATTERN, "item.minecraft.skull_banner_pattern"),
     SUSPICIOUS_STEW(Material.SUSPICIOUS_STEW, "item.minecraft.suspicious_stew"),
     SWEET_BERRIES(Material.SWEET_BERRIES, "item.minecraft.sweet_berries"),
@@ -1030,6 +1023,8 @@ public enum EnumItem {
      * @return The index of the item.
      */
     public static EnumItem get(Material entry) {
+    	if(entry != null && entry.isLegacy())
+    		return lookup.get(Bukkit.getUnsafe().fromLegacy(entry));
         return lookup.get(entry);
     }
 
